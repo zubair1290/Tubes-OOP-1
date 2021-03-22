@@ -14,6 +14,7 @@ std::vector<Coordinate> EngimonPlayer::getCoordinates() {
     return coordinates;
 }
 
+
 bool EngimonPlayer::isCollisionWithEngimonPlayer(Coordinate _coordinate) {
     for (int i=0; i < coordinates.size(); i++) {
         if (_coordinate == coordinates[i]) return true;
