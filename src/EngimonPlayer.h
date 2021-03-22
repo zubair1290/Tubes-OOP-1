@@ -1,15 +1,16 @@
+#include "Coordinate.h"
+#include "Engimon.h"
 
-// class EngimonPlayer {
-// private:
-// public:
-//     EngimonPlayer(/* args */);
-//     ~EngimonPlayer();
-// };
+class EngimonPlayer: public Engimon {
+private:
+    static std::vector<Coordinate> coordinates;
 
-// EngimonPlayer::EngimonPlayer(/* args */)
-// {
-// }
+public:
+    EngimonPlayer();
+    ~EngimonPlayer();
 
-// EngimonPlayer::~EngimonPlayer()
-// {
-// }
+    static std::vector<Coordinate> getCoordinates();
+
+    static bool isCollisionWithEngimonPlayer(Coordinate _coordinate);
+};
+

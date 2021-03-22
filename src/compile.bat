@@ -1,0 +1,1 @@
+g++ main.cpp Organism.cpp player.cpp Engimon.cpp EngimonPlayer.cpp EngimonWild.cpp Element.h Coordinate.cpp Skill.cpp

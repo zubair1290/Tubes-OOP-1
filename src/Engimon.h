@@ -16,7 +16,7 @@ public:
     
     bool getActive();
     Element getElement();
-
+    static int hello() { return 1; }
 };
 
 #endif

@@ -8,10 +8,12 @@ Organism::~Organism() {
     
 }
 
-int Organism::getX() { return x; }
-int Organism::getY() { return y; }
+Coordinate Organism::getCoordinate() { return coordinate; }
 
-void Organism::MoveUp() { y--; }
-void Organism::MoveDown() { y++; }
-void Organism::MoveLeft() { x-=2; }
-void Organism::MoveRight() { x+=2; }
+int Organism::getX() { return coordinate.x; }
+int Organism::getY() { return coordinate.y; }
+
+void Organism::MoveUp() { coordinate.y--; }
+void Organism::MoveDown() { coordinate.y++; }
+void Organism::MoveLeft() { coordinate.x-=2; }
+void Organism::MoveRight() { coordinate.x+=2; }
