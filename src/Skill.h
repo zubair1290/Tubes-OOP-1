@@ -1,6 +1,8 @@
 #ifndef __SKILL_H__
 #define __SKILL_H__
 
+#include "Engimon.h"
+
 class Skill {
 private:
 public:
@@ -18,7 +20,7 @@ class SkillEngimon {
 	public :
 		SkillEngimon();
 		SkillEngimon(char Skill, int basePower, int masteryLvl, int jmlElmt);
-		SkillEngimon(const SkillEngimon&) s;
+		SkillEngimon(const SkillEngimon&);
 		~SkillEngimon();
 		
 		char GetElements();
