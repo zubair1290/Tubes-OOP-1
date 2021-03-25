@@ -7,7 +7,6 @@ class Organism {
 protected:
     Coordinate coordinate;
 
-
 public:
     Organism();
     ~Organism();
@@ -17,10 +16,10 @@ public:
 
     Coordinate getCoordinate();
 
-    void MoveUp();
-    void MoveDown();
-    void MoveLeft();
-    void MoveRight();
+    virtual void MoveUp();
+    virtual void MoveDown();
+    virtual void MoveLeft();
+    virtual void MoveRight();
 };
 
 #endif

@@ -3,7 +3,12 @@
 std::vector<Coordinate> EngimonPlayer::coordinates;
 
 EngimonPlayer::EngimonPlayer() {
-    coordinates.push_back(coordinate);
+    coordinates.push_back(Player::getCoordinates() + Coordinate::make(1, 0));
+    coordinate = Player::getCoordinates() + Coordinate::make(-2, 0);
+    std::cout << "EP: "<< coordinate.x << ',' << coordinate.y << '\n';
+    level = 0;
+    element = Water;
+    active = true;
 }
 
 EngimonPlayer::~EngimonPlayer() {

@@ -8,7 +8,6 @@
 class EngimonWild: public Engimon {
 private:
     static std::vector<Coordinate> coordinates;
-
 public:
     EngimonWild();
     ~EngimonWild();
@@ -16,7 +15,6 @@ public:
     bool isInArea(Coordinate _coordinate);
     
     static bool isCollision(Coordinate _coordinate);
-
 
     static bool isCollisionWithEngimonWild(Coordinate _coordinate);
 };

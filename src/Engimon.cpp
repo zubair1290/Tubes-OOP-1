@@ -8,3 +8,7 @@ bool Engimon::getActive() { return active; }
 Element Engimon::getElement() {
     return element;
 }
+
+int Engimon::getLevel() {
+    return level;
+}

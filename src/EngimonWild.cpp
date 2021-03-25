@@ -9,6 +9,7 @@ std::vector<Coordinate> EngimonWild::coordinates;
 
 EngimonWild::EngimonWild() {
     element = ((Element) (std::rand() % 8));
+    level = std::rand() % 30;
     do {
         switch (element) {
             case Water:
@@ -32,8 +33,10 @@ EngimonWild::EngimonWild() {
                 coordinate.y = (std::rand() % 28)+1;
                 break;
         }
-        std::cout << "coordinate: "<< coordinate.x << " " << coordinate.y << '\n';
+        // std::cout << "coordinate: "<< coordinate.x << " " << coordinate.y << '\n';
+        
     } while (EngimonWild::isCollision(coordinate));
+    
 
     coordinates.push_back(coordinate);
 }

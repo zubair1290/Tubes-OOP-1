@@ -11,8 +11,11 @@ void updatePlayerMap();
 void moveEngimonLiar();
 void updateMap(int x, int y);
 void updateEngimonWildMap();
+void viewAllEngimonWild();
+void updateEngimonMap(Engimon *engimon);
 
-Player player;
+Player player(12, 6);
+EngimonPlayer engimon_player_active;
 std::vector<EngimonWild*> engimon_liar;
 char map[30][111];
 
@@ -30,13 +33,13 @@ int main() {
     }
     updatePlayerMap();
     int count_spawn_engimon_liar = 0;
-
     do {
         // Spawn Engimon Wild
         if (count_spawn_engimon_liar % 15 == 0) {
             EngimonWild *engimon = new EngimonWild();
             engimon_liar.push_back(engimon);
         }
+        std::cout << "Test\n";
 
         updateEngimonWildMap();
         showMap();
@@ -74,6 +77,10 @@ int main() {
                     updatePlayerMap();
                 }
             }
+        }
+        else if (command == "view") {
+            viewAllEngimonWild();
+            continue;
         }
 
         moveEngimonLiar();
@@ -119,8 +126,19 @@ void updateMap(int x, int y) {
 // write engimonwild in map 
 void updateEngimonWildMap() {
     for (int i=0; i < engimon_liar.size(); i++) {
-        int x = engimon_liar[i]->getX(), y = engimon_liar[i]->getY();
-        switch (engimon_liar[i]->getElement()) {
+        updateEngimonMap(engimon_liar[i]);
+    }
+}
+
+// write player in map
+void updatePlayerMap() {
+    map[player.getY()][player.getX()] = 'P';
+    updateEngimonMap(&engimon_player_active);
+}
+
+void updateEngimonMap(Engimon *engimon) {
+    int x = engimon->getX(), y = engimon->getY();
+    switch (engimon->getElement()) {
         case Water:
             map[y][x] = 'W';
             break;
@@ -145,57 +163,75 @@ void updateEngimonWildMap() {
         case Water_Ground:
             map[y][x] = 'N';
             break;
-        }
     }
-}
-
-// write player in map
-void updatePlayerMap() {
-    map[player.getY()][player.getX()] = 'P';
+    if(engimon->getLevel() < 20) {
+        map[y][x] += -'A'+'a'; 
+    }
 }
 
 // move engimon liar randomly
 void moveEngimonLiar() {
     for (int i=0; i < engimon_liar.size(); i++) {
-        int move = std::rand() % 4;
-        switch (move) {
-            // move right
-            case 0: {
-                Coordinate coordinate(engimon_liar[i]->getX() + 2, engimon_liar[i]->getY());
-                if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
-                    updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
-                    engimon_liar[i]->MoveRight();
+        bool isMove = false;
+        do {
+            int move = std::rand() % 4;
+            switch (move) {
+                // move right
+                case 0: {
+                    Coordinate coordinate(engimon_liar[i]->getX() + 2, engimon_liar[i]->getY());
+                    if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
+                        updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
+                        engimon_liar[i]->MoveRight();
+                        isMove = true;
+                    }
+                    break;
                 }
-                break;
-            }
-            // move down
-            case 1: {
-                Coordinate coordinate(engimon_liar[i]->getX(), engimon_liar[i]->getY()+1);
-                if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
-                    updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
-                    engimon_liar[i]->MoveDown();
+                // move down
+                case 1: {
+                    Coordinate coordinate(engimon_liar[i]->getX(), engimon_liar[i]->getY()+1);
+                    if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
+                        updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
+                        engimon_liar[i]->MoveDown();
+                        isMove = true;
+                    }
+                    break;
                 }
-                break;
-            }
-            // move left
-            case 2: {
-                Coordinate coordinate(engimon_liar[i]->getX()-2, engimon_liar[i]->getY());
-                if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
-                    updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
-                    engimon_liar[i]->MoveLeft();
+                // move left
+                case 2: {
+                    Coordinate coordinate(engimon_liar[i]->getX()-2, engimon_liar[i]->getY());
+                    if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
+                        updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
+                        engimon_liar[i]->MoveLeft();
+                        isMove = true;
+                    }
+                    break;
                 }
-                break;
-            }
-            // move up
-            case 3: {
-                Coordinate coordinate(engimon_liar[i]->getX(), engimon_liar[i]->getY()-1);
-                if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
-                    updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
-                    engimon_liar[i]->MoveUp();
+                // move up
+                case 3: {
+                    Coordinate coordinate(engimon_liar[i]->getX(), engimon_liar[i]->getY()-1);
+                    if (!EngimonWild::isCollision(coordinate) && engimon_liar[i]->isInArea(coordinate)) {
+                        updateMap(engimon_liar[i]->getX(), engimon_liar[i]->getY());
+                        engimon_liar[i]->MoveUp();
+                        isMove = true;
+                    }
+                    break;
                 }
-                break;
             }
-        }
+        } while (!isMove);
     }
 
+}
+
+void viewAllEngimonPlayer() {
+
+}
+
+void viewAllEngimonWild() {
+    for (int i=0; i < engimon_liar.size(); i++) {
+        std::cout << "Coordinate: (" << engimon_liar[i]->getX() << ',';
+        std::cout << engimon_liar[i]->getY() << ')' << '\n';
+        std::cout << "Level: " << engimon_liar[i]->getLevel() << '\n';
+        std::cout << "Element: " << engimon_liar[i]->getElement() << '\n';
+        std::cout << "Active: " << engimon_liar[i]->getActive() << '\n';
+    }
 }

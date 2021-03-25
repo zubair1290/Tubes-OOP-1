@@ -1,10 +1,14 @@
 #include "Coordinate.h"
 #include "Engimon.h"
+#include "Player.h"
+
+#ifndef __ENGIMONPLAYER_H__
+#define __ENGIMONPLAYER_H__
 
 class EngimonPlayer: public Engimon {
 private:
     static std::vector<Coordinate> coordinates;
-
+    
 public:
     EngimonPlayer();
     ~EngimonPlayer();
@@ -14,3 +18,4 @@ public:
     static bool isCollisionWithEngimonPlayer(Coordinate _coordinate);
 };
 
+#endif

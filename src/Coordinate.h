@@ -6,13 +6,15 @@ class Coordinate {
 public:
     int x;
     int y;
-    // int getX() const;
-    // int getY() const;
 
     Coordinate();
     Coordinate(int x, int y);
 
     bool operator== (const Coordinate &coordinate) const;
+    Coordinate operator+ (const Coordinate &coordinate) const;
+    Coordinate& operator= (const Coordinate &coordinate);
+
+    static Coordinate make(int x, int y);
 };
 
 #endif

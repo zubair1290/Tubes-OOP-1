@@ -9,6 +9,7 @@ class Engimon: public Organism {
 protected:
     bool active;
     Element element;
+    int level;
     
 public:
     Engimon();
@@ -16,6 +17,7 @@ public:
     
     bool getActive();
     Element getElement();
+    int getLevel();
     static int hello() { return 1; }
 };
 

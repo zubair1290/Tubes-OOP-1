@@ -3,19 +3,26 @@
 
 #include "Organism.h"
 #include "Coordinate.h"
+#include "EngimonPlayer.h"
 #include <iostream>
 
 class Player: public Organism {
-private:
+protected:
     static Coordinate coordinates;
+    // friend class EngimonPlayer;
     
 public:
-    Player();
+    Player(int x, int y);
     ~Player();
 
     static Coordinate getCoordinates();
 
     static bool isCollision(Coordinate &_coordinate);
+
+    void MoveUp() override;
+    void MoveDown() override;
+    void MoveLeft() override;
+    void MoveRight() override;
 };
 
 #endif
