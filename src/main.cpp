@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include "Skill.h"
+#include "Inventory.h"
 #include "Player.h"
 #include "EngimonPlayer.h"
 #include "EngimonWild.h"
@@ -20,78 +22,107 @@ std::vector<EngimonWild*> engimon_liar;
 char map[30][111];
 
 int main() {
-    std::string command;
-    {   // Read File
-        std::ifstream read_file("./Map/map.txt");
-        std::string r_line;
-        int i=0;
-        while (std::getline(read_file, r_line)) {
-            map[i][110] = '\0'; 
-            std::copy(r_line.begin(), r_line.end(), map[i++]);
-        }
-        read_file.close();
-    }
-    updatePlayerMap();
-    int count_spawn_engimon_liar = 0;
-    do {
-        // Spawn Engimon Wild
-        if (count_spawn_engimon_liar % 15 == 0) {
-            EngimonWild *engimon = new EngimonWild();
-            engimon_liar.push_back(engimon);
-        }
-        std::cout << "Test\n";
+    // Inventory<Skill> skill;
+    Inventory<EngimonPlayer> xx;
+    EngimonPlayer x;
+    EngimonPlayer y;
+    EngimonPlayer z;
+    EngimonPlayer a;
+    EngimonPlayer b;
+    EngimonPlayer c;
+    EngimonPlayer d;
+    Inventory<Skill> s;
+    Skill ss;
+    Skill sss;
+    // xx << x;
+    xx << y;
+    xx << z;
+    xx << a;
+    // xx << b;
+    // xx << c;
+    // xx << d;
+    s << ss;
+    s << ss;
+    s << sss;
+    std::cout<<xx.getCountItem()<<std::endl;
+    std::cout<<s.getCountItem()<<std::endl;
+    std::cout<<xx.getJumlah()<<std::endl;
+    std::cout<<s.getJumlah()<<std::endl;
 
-        updateEngimonWildMap();
-        showMap();
-        std::cout << "=> ";
-        std::cin >> command;
-        if (command == "w" || command == "a" || command == "s" || command == "d") {
-            int x = player.getX();
-            int y = player.getY();
-            if (command == "w") {
-                Coordinate coordinate(x, y-1);
-                if (!Player::isCollision(coordinate)) {
-                    updateMap(x, y);
-                    player.MoveUp();
-                    updatePlayerMap();
-                }
-            } else if (command == "a") {
-                Coordinate coordinate(x-2, y);
-                if (!Player::isCollision(coordinate)) {
-                    updateMap(x, y);
-                    player.MoveLeft();
-                    updatePlayerMap();
-                }
-            } else if (command == "s") {
-                Coordinate coordinate(x, y+1);
-                if (!Player::isCollision(coordinate)) {
-                    updateMap(x, y);
-                    player.MoveDown();
-                    updatePlayerMap();
-                }
-            } else if (command == "d") {
-                Coordinate coordinate(x+2, y);
-                if (!Player::isCollision(coordinate)) {
-                    updateMap(x, y);
-                    player.MoveRight();
-                    updatePlayerMap();
-                }
-            }
-        }
-        else if (command == "view") {
-            viewAllEngimonWild();
-            continue;
-        }
+    // Skill hasu;
+    
+    // std::string command;
+    // {   // Read File
+    //     std::ifstream read_file("./Map/map.txt");
+    //     std::string r_line;
+    //     int i=0;
+    //     while (std::getline(read_file, r_line)) {
+    //         map[i][110] = '\0'; 
+    //         std::copy(r_line.begin(), r_line.end(), map[i++]);
+    //     }
+    //     read_file.close();
+    // }
+    // updatePlayerMap();
+    // int count_spawn_engimon_liar = 0;
+    // do {
+    //     // Spawn Engimon Wild
+    //     if (count_spawn_engimon_liar % 15 == 0) {
+    //         EngimonWild *engimon = new EngimonWild();
+    //         engimon_liar.push_back(engimon);
+    //     }
+    //     std::cout << "Test\n";
 
-        moveEngimonLiar();
-        count_spawn_engimon_liar++;
+    //     updateEngimonWildMap();
+    //     showMap();
+    //     std::cout << "=> ";
+    //     std::cin >> command;
+    //     if (command == "w" || command == "a" || command == "s" || command == "d") {
+    //         int x = player.getX();
+    //         int y = player.getY();
+    //         if (command == "w") {
+    //             Coordinate coordinate(x, y-1);
+    //             if (!Player::isCollision(coordinate)) {
+    //                 updateMap(x, y);
+    //                 player.MoveUp();
+    //                 updatePlayerMap();
+    //             }
+    //         } else if (command == "a") {
+    //             Coordinate coordinate(x-2, y);
+    //             if (!Player::isCollision(coordinate)) {
+    //                 updateMap(x, y);
+    //                 player.MoveLeft();
+    //                 updatePlayerMap();
+    //             }
+    //         } else if (command == "s") {
+    //             Coordinate coordinate(x, y+1);
+    //             if (!Player::isCollision(coordinate)) {
+    //                 updateMap(x, y);
+    //                 player.MoveDown();
+    //                 updatePlayerMap();
+    //             }
+    //         } else if (command == "d") {
+    //             Coordinate coordinate(x+2, y);
+    //             if (!Player::isCollision(coordinate)) {
+    //                 updateMap(x, y);
+    //                 player.MoveRight();
+    //                 updatePlayerMap();
+    //             }
+    //         }
+    //     }
+    //     else if (command == "view") {
+    //         viewAllEngimonWild();
+    //         continue;
+    //     }
 
-        std::cout << "\n\n";
-    } while (command != "q");
+    //     moveEngimonLiar();
+    //     count_spawn_engimon_liar++;
 
-    for (int i=0; i < engimon_liar.size(); i++) {
-        delete engimon_liar[i];
-    }
+    //     std::cout << "\n\n";
+    // } while (command != "q");
+
+    // for (int i=0; i < engimon_liar.size(); i++) {
+    //     delete engimon_liar[i];
+    // }
     return 0;
 }
 

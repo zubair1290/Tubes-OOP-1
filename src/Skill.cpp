@@ -1,48 +1,52 @@
-// #include "Skill.h"
-// #include <iostream>
-// #include "Element.h"
+#include "Skill.h"
+#include <iostream>
+#include "Element.h"
 
-// using namespace std;
+using namespace std;
 
-// SkillEngimon :: SkillEngimon(){
-// 	this->basePower = 0;
-// 	this->masteryLvl = 1;
-// 	this->Skill = "NULL";
-// 	this->jmlElmt = 0
-// 	this->elements = new Element[this->jmlElmt];
-// }
-// SkillEngimon :: SkillEngimon(char Skill, int basePower, int masteryLvl, int jmlElmt){
-// 	this->basePower = basePower;
-// 	this->masteryLvl = masteryLvl;
-// 	this->Skill = Skill;
-// 	this->jmlElmt = jmlElmt;
-// 	this->elements = new Element[this->jmlElmt];
-// }
-// SkillEngimon :: SkillEngimon(const SkillEngimon& s){
-// 	this->basePower = s->basePower;
-// 	this->masteryLvl = s->masteryLvl;
-// 	this->Skill = s->Skill;
-// 	this->elements = new Element [s->jmlElmt];
-// 	for (i = 0; i < s->jmlElmt; i++){
-// 		this->elements[i] = s->elements[i];
-// 	}
-// }
-// SkillEngimon :: ~SkillEngimon(){
-// 	delete this;
-// }
+Skill :: Skill(){
+	// this->basePower = 0;
+	// this->masteryLvl = 1;
+	// this->Skill = "NULL";
+	// this->jmlElmt = 0
+	// this->elements = new Element[this->jmlElmt];
+}
 
-// Element SkillEngimon :: GetElements( int x){
+bool Skill::operator==(const Skill& s) const{
+    return (s.basePower == basePower && s.elements == elements && s.jmlElmt == jmlElmt && s.masteryLvl == masteryLvl && s.skill == skill);
+}
+// Skill :: Skill(char Skill, int basePower, int masteryLvl, int jmlElmt){
+// 	// this->basePower = basePower;
+// 	// this->masteryLvl = masteryLvl;
+// 	// this->Skill = Skill;
+// 	// this->jmlElmt = jmlElmt;
+// 	// this->elements = new Element[this->jmlElmt];
+// }
+// Skill :: Skill(const Skill& s){
+// 	// this->basePower = s->basePower;
+// 	// this->masteryLvl = s->masteryLvl;
+// 	// this->Skill = s->Skill;
+// 	// this->elements = new Element [s->jmlElmt];
+// 	// for (i = 0; i < s->jmlElmt; i++){
+// 	// 	this->elements[i] = s->elements[i];
+// 	// }
+// }
+Skill :: ~Skill(){
+	
+}
+
+// Element Skill :: GetElements( int x){
 // 	if (x < this->jmlElmt){
 // 		return this->elements[x];
 // 	}
 // }
 
-// void SkillEngimon :: SetElements(Element E){
+// void Skill :: SetElements(Element E){
 // 	this->elements[this->jmlElmt] = E;
 // 	this->jmlElmt++
 // }
 
-// bool SkillEngimon :: isThereSameElmt(SkillEngimon& S, Engimon E){
+// bool Skill :: isThereSameElmt(Skill& S, Engimon E){
 // 	bool found = false;
 // 	for (i = 0; i < S->jmlElmt; i++){
 // 		if (GetElements(i) == getElement(E)){
@@ -52,7 +56,7 @@
 // 	return found;
 // }
 
-// //void learn(SkillEngimon S, Engimon E){
+// //void learn(Skill S, Engimon E){
 // //	if (isFull()){
 // //		throw (LearnExp(SLOT_SKILL_FULL));
 // //	}else {
@@ -67,7 +71,7 @@
 // //		}
 // //	}
 // //}
-// void replaceSkillEngimon(SkillEngimon S, Engimon E){
+// void replaceSkill(Skill S, Engimon E){
 // 	char comfirm;
 // 	int x;
 // 	cout << "Replace? (Y/N) : ";
@@ -81,7 +85,7 @@
 // 	}
 // }
 
-// //void learnSkillItem(SkillEngimon S, Inventory I){
+// //void learnSkillItem(Skill S, Inventory I){
 // //	if (isFullInventory(I)){
 // //		throw (LearnExp(INVENTORY_FULL));
 // //	}else{
