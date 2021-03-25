@@ -9,7 +9,7 @@
 template <class E>
 class Inventoryplusplus{
 private:
-    E item;
+    E* item;
     int size;
     int countItem;
 public:
