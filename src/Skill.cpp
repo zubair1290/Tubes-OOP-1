@@ -68,7 +68,7 @@ bool SkillEngimon :: isThereSameElmt(SkillEngimon& S, Engimon E){
 //	}
 //}
 void replaceSkillEngimon(SkillEngimon S, Engimon E){
-	char comfim;
+	char comfirm;
 	int x;
 	cout << "Replace? (Y/N) : ";
 	cin >> confirm;
