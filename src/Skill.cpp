@@ -5,23 +5,26 @@
 using namespace std;
 
 Skill :: Skill(){
-	// this->basePower = 0;
-	// this->masteryLvl = 1;
-	// this->Skill = "NULL";
-	// this->jmlElmt = 0
-	// this->elements = new Element[this->jmlElmt];
+	 this->basePower = 0;
+	 this->masteryLvl = 0;
+	 this->Skill = "no name";
+	 this->jmlElmt = 0
+	 this->elements = new Element[this->jmlElmt];
 }
 
 bool Skill::operator==(const Skill& s) const{
     return (s.basePower == basePower && s.elements == elements && s.jmlElmt == jmlElmt && s.masteryLvl == masteryLvl && s.skill == skill);
 }
-// Skill :: Skill(char Skill, int basePower, int masteryLvl, int jmlElmt){
-// 	// this->basePower = basePower;
-// 	// this->masteryLvl = masteryLvl;
-// 	// this->Skill = Skill;
-// 	// this->jmlElmt = jmlElmt;
-// 	// this->elements = new Element[this->jmlElmt];
-// }
+Skill :: Skill(char s, int bp, int ml, int je, Element[] e){
+ 	this->basePower = bp;
+ 	this->masteryLvl = ml;
+ 	this->Skill = s;
+ 	this->jmlElmt = je;
+	this->elements = new Element[je];
+	for (i=0; i< je; i++){
+		this->elements[i] = e[i];
+	}
+}
 // Skill :: Skill(const Skill& s){
 // 	// this->basePower = s->basePower;
 // 	// this->masteryLvl = s->masteryLvl;
@@ -31,19 +34,17 @@ bool Skill::operator==(const Skill& s) const{
 // 	// 	this->elements[i] = s->elements[i];
 // 	// }
 // }
-Skill :: ~Skill(){
+//Skill :: ~Skill(){
 	
+//}
+
+Element Skill :: GetElementsSkill(){
+	return this->elements;
 }
 
-// Element Skill :: GetElements( int x){
-// 	if (x < this->jmlElmt){
-// 		return this->elements[x];
-// 	}
-// }
-
-// void Skill :: SetElements(Element E){
-// 	this->elements[this->jmlElmt] = E;
-// 	this->jmlElmt++
+//void Skill :: SetElements(Element E){
+//	this->elements[this->jmlElmt] = E;
+//	this->jmlElmt++
 // }
 
 // bool Skill :: isThereSameElmt(Skill& S, Engimon E){
