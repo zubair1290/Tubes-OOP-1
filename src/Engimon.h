@@ -15,10 +15,9 @@ public:
     Engimon();
     ~Engimon();
     
-    bool getActive();
-    Element getElement();
-    int getLevel();
-    static int hello() { return 1; }
+    bool getActive() const;
+    Element getElement() const;
+    int getLevel() const;
 };
 
 #endif

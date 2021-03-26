@@ -1,12 +1,11 @@
 #include <iostream>
 #include <fstream>
-#include "Skill.h"
-#include "Inventory.h"
 #include "Player.h"
 #include "EngimonPlayer.h"
 #include "EngimonWild.h"
 #include <bits/stdc++.h>
-
+#include "Inventory.h"
+#include "Skill.h"
 
 void showMap();
 void updatePlayerMap();
@@ -14,115 +13,133 @@ void moveEngimonLiar();
 void updateMap(int x, int y);
 void updateEngimonWildMap();
 void viewAllEngimonWild();
-void updateEngimonMap(Engimon *engimon);
+void updateEngimonMap(Engimon engimon);
 
 Player player(12, 6);
-EngimonPlayer engimon_player_active;
+EngimonPlayer engimon_player;
 std::vector<EngimonWild*> engimon_liar;
 char map[30][111];
+Inventory<EngimonPlayer> inventory_engimon;
+Inventory<Skill> inventory_skill;
 
 int main() {
-    // Inventory<Skill> skill;
-    Inventory<EngimonPlayer> xx;
-    EngimonPlayer x;
-    EngimonPlayer y;
-    EngimonPlayer z;
-    EngimonPlayer a;
-    EngimonPlayer b;
-    EngimonPlayer c;
-    EngimonPlayer d;
-    Inventory<Skill> s;
-    Skill ss;
-    Skill sss;
-    // xx << x;
-    xx << y;
-    xx << z;
-    xx << a;
-    // xx << b;
-    // xx << c;
-    // xx << d;
-    s << ss;
-    s << ss;
-    s << sss;
-    std::cout<<xx.getCountItem()<<std::endl;
-    std::cout<<s.getCountItem()<<std::endl;
-    std::cout<<xx.getJumlah()<<std::endl;
-    std::cout<<s.getJumlah()<<std::endl;
-
-    // Skill hasu;
+    std::string full_command;
+    std::string command;
+    {   // Read File
+        std::ifstream read_file("./Map/map.txt");
+        std::string r_line;
+        int i=0;
+        while (std::getline(read_file, r_line)) {
+            map[i][110] = '\0'; 
+            std::copy(r_line.begin(), r_line.end(), map[i++]);
+        }
+        read_file.close();
+    }
     
-    // std::string command;
-    // {   // Read File
-    //     std::ifstream read_file("./Map/map.txt");
-    //     std::string r_line;
-    //     int i=0;
-    //     while (std::getline(read_file, r_line)) {
-    //         map[i][110] = '\0'; 
-    //         std::copy(r_line.begin(), r_line.end(), map[i++]);
-    //     }
-    //     read_file.close();
-    // }
-    // updatePlayerMap();
-    // int count_spawn_engimon_liar = 0;
-    // do {
-    //     // Spawn Engimon Wild
-    //     if (count_spawn_engimon_liar % 15 == 0) {
-    //         EngimonWild *engimon = new EngimonWild();
-    //         engimon_liar.push_back(engimon);
-    //     }
-    //     std::cout << "Test\n";
+    updatePlayerMap();
+    int count_spawn_engimon_liar = 0;
 
-    //     updateEngimonWildMap();
-    //     showMap();
-    //     std::cout << "=> ";
-    //     std::cin >> command;
-    //     if (command == "w" || command == "a" || command == "s" || command == "d") {
-    //         int x = player.getX();
-    //         int y = player.getY();
-    //         if (command == "w") {
-    //             Coordinate coordinate(x, y-1);
-    //             if (!Player::isCollision(coordinate)) {
-    //                 updateMap(x, y);
-    //                 player.MoveUp();
-    //                 updatePlayerMap();
-    //             }
-    //         } else if (command == "a") {
-    //             Coordinate coordinate(x-2, y);
-    //             if (!Player::isCollision(coordinate)) {
-    //                 updateMap(x, y);
-    //                 player.MoveLeft();
-    //                 updatePlayerMap();
-    //             }
-    //         } else if (command == "s") {
-    //             Coordinate coordinate(x, y+1);
-    //             if (!Player::isCollision(coordinate)) {
-    //                 updateMap(x, y);
-    //                 player.MoveDown();
-    //                 updatePlayerMap();
-    //             }
-    //         } else if (command == "d") {
-    //             Coordinate coordinate(x+2, y);
-    //             if (!Player::isCollision(coordinate)) {
-    //                 updateMap(x, y);
-    //                 player.MoveRight();
-    //                 updatePlayerMap();
-    //             }
-    //         }
-    //     }
-    //     else if (command == "view") {
-    //         viewAllEngimonWild();
-    //         continue;
-    //     }
+    bool isProcessingCommand = false;
+    updateEngimonWildMap();
+    showMap();
+    do {
+        if (!isProcessingCommand) std::cout << "=> ";
+        isProcessingCommand = false;
+        std::cin >> command;
+        full_command += command;
+        if (command == "w" || command == "a" || command == "s" || command == "d") {
+            full_command = "";
+            int x = player.getX();
+            int y = player.getY();
+            if (command == "w") {
+                Coordinate coordinate(x, y-1);
+                if (!Player::isCollision(coordinate)) {
+                    updateMap(x, y);
+                    updateMap(engimon_player.getX(), engimon_player.getY());
+                    player.MoveUp();
+                    updatePlayerMap();
+                }
+            } else if (command == "a") {
+                Coordinate coordinate(x-2, y);
+                if (!Player::isCollision(coordinate)) {
+                    updateMap(x, y);
+                    updateMap(engimon_player.getX(), engimon_player.getY());
+                    player.MoveLeft();
+                    updatePlayerMap();
+                }
+            } else if (command == "s") {
+                Coordinate coordinate(x, y+1);
+                if (!Player::isCollision(coordinate)) {
+                    updateMap(x, y);
+                    updateMap(engimon_player.getX(), engimon_player.getY());
+                    player.MoveDown();
+                    updatePlayerMap();
+                }
+            } else if (command == "d") {
+                Coordinate coordinate(x+2, y);
+                if (!Player::isCollision(coordinate)) {
+                    updateMap(x, y);
+                    updateMap(engimon_player.getX(), engimon_player.getY());
+                    player.MoveRight();
+                    updatePlayerMap();
+                }
+            }
+        }
+        else if (command == "view") {
+            // std::cout << full_command << '\n';
+            if (full_command.length() > 40) {
+                full_command = "";
+                isProcessingCommand = false;
+            } else {
+                isProcessingCommand = true;
+            }
+            continue;
+        } else if (command == "engimon") {
+            if (full_command.length() > 40) {
+                full_command = "";
+                isProcessingCommand = false;
+            } else {
+                isProcessingCommand = true;
+            }
+            // std::cout << full_command << '\n';
+            continue;
+        } else if (full_command == "viewengimonliar") {
+            // std::cout << full_command << '\n';
+            full_command = "";
+            viewAllEngimonWild();
+            continue;
+        } else if (full_command == "viewengimonliar") {
+            // std::cout << full_command << '\n';
+            full_command = "";
+            viewAllEngimonPlayer();
+            continue;
+        } else {
+            full_command = "";
+            continue;
+        }
 
-    //     moveEngimonLiar();
-    //     count_spawn_engimon_liar++;
+        moveEngimonLiar();
 
-    //     std::cout << "\n\n";
-    // } while (command != "q");
+        if (count_spawn_engimon_liar % 15 == 0) {
+            EngimonWild *engimon = new EngimonWild();
+            engimon_liar.push_back(engimon);
+        }
+        count_spawn_engimon_liar++;
+        engimon_player = *EngimonPlayer::getEngimonActive();
 
-    // for (int i=0; i < engimon_liar.size(); i++) {
-    //     delete engimon_liar[i];
-    // }
+        std::cout << "\n\n";
+
+
+
+        updateEngimonWildMap();
+        showMap();
+        // std::cout << "=> ";
+
+    } while (command != "q");
+
+    for (int i=0; i < engimon_liar.size(); i++) {
+        delete engimon_liar[i];
+    }
     return 0;
 }
 
@@ -157,19 +174,19 @@ void updateMap(int x, int y) {
 // write engimonwild in map 
 void updateEngimonWildMap() {
     for (int i=0; i < engimon_liar.size(); i++) {
-        updateEngimonMap(engimon_liar[i]);
+        updateEngimonMap(*engimon_liar[i]);
     }
 }
 
 // write player in map
 void updatePlayerMap() {
     map[player.getY()][player.getX()] = 'P';
-    updateEngimonMap(&engimon_player_active);
+    updateEngimonMap(engimon_player);
 }
 
-void updateEngimonMap(Engimon *engimon) {
-    int x = engimon->getX(), y = engimon->getY();
-    switch (engimon->getElement()) {
+void updateEngimonMap(Engimon engimon) {
+    int x = engimon.getX(), y = engimon.getY();
+    switch (engimon.getElement()) {
         case Water:
             map[y][x] = 'W';
             break;
@@ -195,7 +212,7 @@ void updateEngimonMap(Engimon *engimon) {
             map[y][x] = 'N';
             break;
     }
-    if(engimon->getLevel() < 20) {
+    if(engimon.getLevel() < 20) {
         map[y][x] += -'A'+'a'; 
     }
 }

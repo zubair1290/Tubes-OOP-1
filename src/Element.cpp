@@ -98,9 +98,9 @@ float Element::multiplierTargetElement(Element b){
   return mult;
 }
 
-string Element::getRandomSpeciesFromElement(){
+std::string Element::getRandomSpeciesFromElement(){
     int randomhalf = std::rand()% 2;
-    string species;
+    std::string species;
     switch(type){
         case Fire : switch(randomhalf){
                             case 0 : species="Fire_1"; break;

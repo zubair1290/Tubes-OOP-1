@@ -3,7 +3,6 @@
 
 #include <string>
 #include <iostream>
-using namespace std;
 
 enum ElementType {
     Water,
@@ -43,7 +42,7 @@ public:
   
   float multiplierTargetElement(Element b);
   
-  string getRandomSpeciesFromElement();
+  std::string getRandomSpeciesFromElement();
 
 private:
   ElementType type;

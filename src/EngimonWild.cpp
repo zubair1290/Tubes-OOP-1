@@ -15,28 +15,27 @@ EngimonWild::EngimonWild() {
             case Water:
             case Ice:
             case Water_Ice:
-                coordinate.x = (std::rand() % 21)*2 + 36;
-                coordinate.y = ((std::rand() % 15)+1);
+                coordinate = Coordinate::make((std::rand() % 21)*2 + 36, (std::rand() % 15)+1);
                 break;
             case Fire:
             case Fire_Electric:
             case Ground:
             case Electric:
-                coordinate.y = (std::rand() % 28)+1;
-                if (coordinate.y <= 15)
-                    coordinate.x = ((std::rand() % 17)+1)*2;
+                int x, y;
+                y = (std::rand() % 28)+1;
+                if (y <= 15)
+                    x = ((std::rand() % 17)+1)*2;
                 else
-                    coordinate.x = ((std::rand() % 38)+1)*2;
+                    x = ((std::rand() % 38)+1)*2;
+                coordinate = Coordinate::make(x, y);
                 break;
             case Water_Ground:
-                coordinate.x = ((std::rand() % 38)+1)*2;
-                coordinate.y = (std::rand() % 28)+1;
+                coordinate = Coordinate::make(((std::rand() % 38)+1)*2, (std::rand() % 28)+1);
                 break;
         }
         // std::cout << "coordinate: "<< coordinate.x << " " << coordinate.y << '\n';
         
     } while (EngimonWild::isCollision(coordinate));
-    
 
     coordinates.push_back(coordinate);
 }
@@ -47,20 +46,20 @@ bool EngimonWild::isCollision(Coordinate _coordinate) {
     return (_coordinate == Player::getCoordinates()) ||
     (EngimonPlayer::isCollisionWithEngimonPlayer(_coordinate)) ||
     (isCollisionWithEngimonWild(_coordinate)) ||
-    (_coordinate.x <= 0 || _coordinate.y <= 0 || _coordinate.x >= 78 || _coordinate.y >= 29);
+    (_coordinate.getX() <= 0 || _coordinate.getY() <= 0 || _coordinate.getX() >= 78 || _coordinate.getY() >= 29);
 }
 
-bool EngimonWild::isInArea(Coordinate _coordinate) {
+bool EngimonWild::isInArea(Coordinate _coordinate) const {
     switch (element) {
         case Water:
         case Ice:
         case Water_Ice:
-            return (_coordinate.x >= 36 && _coordinate.y <= 15);
+            return (_coordinate.getX() >= 36 && _coordinate.getY() <= 15);
         case Fire:
         case Fire_Electric:
         case Ground:
         case Electric:
-            return (_coordinate.y <= 15 && _coordinate.x <= 34) || (_coordinate.y >= 16 && _coordinate.x >= 36);
+            return (_coordinate.getY() <= 15 && _coordinate.getX() <= 34) || (_coordinate.getY() >= 16 && _coordinate.getX() >= 36);
         case Water_Ground:
             return true;
     }

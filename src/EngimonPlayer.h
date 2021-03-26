@@ -8,6 +8,8 @@
 class EngimonPlayer: public Engimon {
 private:
     static std::vector<Coordinate> coordinates;
+    static std::vector <EngimonPlayer*> engimons;
+    friend class Player;
     
 public:
     EngimonPlayer();
@@ -16,6 +18,10 @@ public:
     static std::vector<Coordinate> getCoordinates();
 
     static bool isCollisionWithEngimonPlayer(Coordinate _coordinate);
+
+    static EngimonPlayer *getEngimonActive();
+
+    // EngimonPlayer& operator= (const EngimonPlayer &engimon_player);
 };
 
 #endif

@@ -12,7 +12,7 @@ public:
     EngimonWild();
     ~EngimonWild();
 
-    bool isInArea(Coordinate _coordinate);
+    bool isInArea(Coordinate _coordinate) const;
     
     static bool isCollision(Coordinate _coordinate);
 

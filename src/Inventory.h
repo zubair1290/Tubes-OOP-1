@@ -67,3 +67,43 @@ Inventory<Skill>& Inventory<Skill>::operator<<(const Skill& i){
 }
 
 #endif
+// -----------------------------------------------------------------------
+// #include <bits/stdc++.h>
+
+// template <class T>
+// class Inventory{
+// public:
+//     static int count;
+//     std::vector<T> inventory;
+
+//     Inventory() {   
+//         std::cout << "No";
+//     }
+//     ~Inventory() {
+
+//     }
+
+//     static int geet() {
+//         return Inventory<int>::count + Inventory<short int>::count;
+//     }
+
+//     // void operator<<(const &T);
+// };
+
+// template<class T>
+// int Inventory<T>::count = 2;
+
+// template<>
+// Inventory<int>::Inventory() {
+//     std::cout << "Yes";
+//     Inventory<int>::count++;
+// }
+
+// // int main() {
+// //     Inventory<short int> x;
+// //     Inventory<int> y; 
+// //     std::cout << Inventory<int>::count << '\n';
+// //     std::cout << Inventory<short int>::count << '\n';
+// //     std::cout << Inventory<int>::geet() << '\n';
+// //     return 0;
+// // }

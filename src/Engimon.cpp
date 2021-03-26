@@ -3,12 +3,12 @@
 Engimon::Engimon() {}
 Engimon::~Engimon() {}
 
-bool Engimon::getActive() { return active; }
+bool Engimon::getActive() const { return active; }
 
-Element Engimon::getElement() {
+Element Engimon::getElement() const {
     return element;
 }
 
-int Engimon::getLevel() {
+int Engimon::getLevel() const {
     return level;
 }
