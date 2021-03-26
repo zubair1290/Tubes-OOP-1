@@ -97,3 +97,43 @@ float Element::multiplierTargetElement(Element b){
   }
   return mult;
 }
+
+string Element::getRandomSpeciesFromElement(){
+    int randomhalf = std::rand()% 2;
+    string species;
+    switch(type){
+        case Fire : switch(randomhalf){
+                            case 0 : species="Fire_1"; break;
+                            case 1 : species="Fire_2"; break;
+        } break;
+        case Water : switch(randomhalf){
+                            case 0 : species="Water_1"; break;
+                            case 1 : species="Water_2"; break;
+        } break;
+        case Electric : switch(randomhalf){
+                            case 0 : species="Electric_1"; break;
+                            case 1 : species="Electric_2"; break;
+        } break;
+        case Ground : switch(randomhalf){
+                            case 0 : species="Ground_1"; break;
+                            case 1 : species="Ground_2"; break;
+        } break;
+        case Ice : switch(randomhalf){
+                            case 0 : species="Ice_1"; break;
+                            case 1 : species="Ice_2"; break;
+        } break;
+        case Fire_Electric: switch(randomhalf){
+                            case 0 : species="Fire_Electric_1"; break;
+                            case 1 : species="Fire_Electric_2"; break;
+        } break;
+        case Water_Ground: switch(randomhalf){
+                            case 0 : species="Water_Ground_1"; break;
+                            case 1 : species="Water_Ground_2"; break;
+        } break;
+        case Water_Ice: switch(randomhalf){
+                            case 0 : species="Water_Ice_1"; break;
+                            case 1 : species="Water_Ice_2"; break;
+        } break;
+    }
+    return species;
+}

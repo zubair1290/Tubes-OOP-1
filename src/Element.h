@@ -43,6 +43,7 @@ public:
   
   float multiplierTargetElement(Element b);
   
+  string getRandomSpeciesFromElement();
 
 private:
   ElementType type;
