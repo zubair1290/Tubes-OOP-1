@@ -2,13 +2,14 @@
 #define __SKILL_H__
 
 #include "Engimon.h"
+#include "Element.h"
 
 class Skill {
 	private :
 		char skill;
 		int basePower;
 		int masteryLvl;
-		char *elements;
+		Element[] elements;
 		int jmlElmt;
 	public :
 		Skill();
@@ -24,5 +25,6 @@ class Skill {
 		
 		// void learn(Skill S, Engimon E);
 };
+
 
 #endif
