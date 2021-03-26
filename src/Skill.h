@@ -13,7 +13,7 @@ class Skill {
 		int jmlElmt;
 	public :
 		Skill();
-		// Skill(char Skill, int basePower, int masteryLvl, int jmlElmt);
+		Skill(char s, int bp, int ml, int je, Element[] e);
 		// Skill(const Skill&);
 		~Skill();
 
