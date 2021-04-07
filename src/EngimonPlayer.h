@@ -21,6 +21,7 @@ public:
 
     static EngimonPlayer *getEngimonActive();
 
+    void setLevel(int lvl);
     // EngimonPlayer& operator= (const EngimonPlayer &engimon_player);
 };
 

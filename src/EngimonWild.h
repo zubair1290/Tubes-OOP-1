@@ -17,6 +17,8 @@ public:
     static bool isCollision(Coordinate _coordinate);
 
     static bool isCollisionWithEngimonWild(Coordinate _coordinate);
+    
+    bool duel(EngimonWild engLiar);
 };
 
 #endif

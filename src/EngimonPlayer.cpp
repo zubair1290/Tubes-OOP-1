@@ -8,7 +8,7 @@ EngimonPlayer::EngimonPlayer() {
     coordinate = Player::getCoordinates() + Coordinate::make(-2, 0);
     engimons.push_back(this);
     level = 0;
-    element = Water;
+    elementtype = Water;
     active = true;
 }
 
@@ -35,6 +35,10 @@ EngimonPlayer *EngimonPlayer::getEngimonActive() {
         }
     }
     return e;
+}
+
+void EngimonPlayer::setLevel(int lvl){
+    level=lvl;
 }
 
 // EngimonPlayer& EngimonPlayer::operator= (const EngimonPlayer &engimon_player) {

@@ -1,6 +1,6 @@
 #include "EngimonWild.h"
 #include <iostream>
-#include "Element.h"
+#include "ElementType.h"
 #include "Player.h"
 #include "EngimonPlayer.h"
 #include <bits/stdc++.h>
@@ -8,10 +8,10 @@
 std::vector<Coordinate> EngimonWild::coordinates;
 
 EngimonWild::EngimonWild() {
-    element = ((Element) (std::rand() % 8));
+    elementtype = ((ElementType) (std::rand() % 8));
     level = std::rand() % 30;
     do {
-        switch (element) {
+        switch (elementtype) {
             case Water:
             case Ice:
             case Water_Ice:
@@ -50,7 +50,7 @@ bool EngimonWild::isCollision(Coordinate _coordinate) {
 }
 
 bool EngimonWild::isInArea(Coordinate _coordinate) const {
-    switch (element) {
+    switch (elementtype) {
         case Water:
         case Ice:
         case Water_Ice:

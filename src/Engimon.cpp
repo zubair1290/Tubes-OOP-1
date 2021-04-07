@@ -5,10 +5,21 @@ Engimon::~Engimon() {}
 
 bool Engimon::getActive() const { return active; }
 
-Element Engimon::getElement() const {
-    return element;
+ElementType Engimon::getElementType() const {
+    return elementtype;
 }
+// int Engimon::sumTotalSkillPower(){
+//     return skills.getbasePower()*skills.getmasteryLvl();
+// }
 
 int Engimon::getLevel() const {
     return level;
+}
+
+// Skill Engimon::getSkill()  {
+//     return skills;
+// }
+
+std::string Engimon::getSpecies() const {
+    return species;
 }
