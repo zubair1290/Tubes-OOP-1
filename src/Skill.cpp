@@ -1,30 +1,37 @@
 #include "Skill.h"
 #include <iostream>
-#include "Element.h"
+#include "ElementType.h"
 
 using namespace std;
 
 Skill :: Skill(){
 	 this->basePower = 0;
 	 this->masteryLvl = 0;
-	 this->Skill = "no name";
-	 this->jmlElmt = 0
-	 this->elements = new Element[this->jmlElmt];
+	 this->skill = "no name";
+	 this->jmlElmt = 0;
+	 this->elements = Fire;
 }
 
 bool Skill::operator==(const Skill& s) const{
     return (s.basePower == basePower && s.elements == elements && s.jmlElmt == jmlElmt && s.masteryLvl == masteryLvl && s.skill == skill);
 }
-Skill :: Skill(char s, int bp, int ml, int je, Element[] e){
+Skill :: Skill(std::string s, int bp, int ml, int je, ElementType e){
  	this->basePower = bp;
  	this->masteryLvl = ml;
- 	this->Skill = s;
+ 	this->skill = s;
  	this->jmlElmt = je;
-	this->elements = new Element[je];
-	for (i=0; i< je; i++){
-		this->elements[i] = e[i];
+	this->elements = e;
 	}
-}
+std::string Skill ::getSkillName() const{return skill;}
+int Skill ::getbasePower() const{return basePower;}
+int Skill ::getmasteryLvl() const{return masteryLvl;}
+
+ElementType Skill ::getSkillElement() const{return elements;}
+	/*
+	for (int i=0; i< je; i++){
+		this->elements[i] = e[i];
+*/
+//}// 
 // Skill :: Skill(const Skill& s){
 // 	// this->basePower = s->basePower;
 // 	// this->masteryLvl = s->masteryLvl;
@@ -34,13 +41,13 @@ Skill :: Skill(char s, int bp, int ml, int je, Element[] e){
 // 	// 	this->elements[i] = s->elements[i];
 // 	// }
 // }
-//Skill :: ~Skill(){
+Skill :: ~Skill(){}
 	
 //}
-
+/*
 Element Skill :: GetElementsSkill(){
 	return this->elements;
-}
+}*/
 
 //void Skill :: SetElements(Element E){
 //	this->elements[this->jmlElmt] = E;
