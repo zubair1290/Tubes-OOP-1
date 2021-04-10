@@ -1,7 +1,7 @@
 #ifndef __SKILL_H__
 #define __SKILL_H__
 
-#include "Engimon.h"
+// #include "Engimon.h"
 #include "ElementType.h"
 #include <string>
 
