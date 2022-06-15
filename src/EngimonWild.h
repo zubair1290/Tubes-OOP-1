@@ -3,7 +3,8 @@
 
 #include "Engimon.h"
 #include "Coordinate.h"
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include <vector>
 
 class EngimonWild: public Engimon {
 private:

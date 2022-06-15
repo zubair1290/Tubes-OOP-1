@@ -2,7 +2,7 @@
 #define __ENGIMON_H__
 
 #include "Organism.h"
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 #include "ElementType.h"
 #include "Skill.h"
 #include <string>

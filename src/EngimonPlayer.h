@@ -1,9 +1,11 @@
-#include "Coordinate.h"
-#include "Engimon.h"
-#include "Player.h"
 
 #ifndef __ENGIMONPLAYER_H__
 #define __ENGIMONPLAYER_H__
+
+#include "Coordinate.h"
+#include "Engimon.h"
+#include "Player.h"
+#include <vector>
 
 class EngimonPlayer: public Engimon {
 private:
