@@ -8,10 +8,10 @@ dan menangkap engimon liar tersebut menggunakan engimon mereka sendiri. Willy Wa
 meminta bantuan anda untuk membuat sebuah game yang dapat mensimulasikan wahana
 Engimon Factory milik Willy Wangky, agar ia dapat membangun wahananya dengan lebih baik.
 
-# Deskripsi Singkat
+## Deskripsi Singkat
 Pemain melawan dan menangkap engimon liar menggunakan engimon player.
 
-# Compile
+## Compile
 g++ main.cpp Organism.cpp Engimon.cpp EngimonWild.cpp player.cpp Element.h
 
-# Screenshoot
+## Screenshoot
