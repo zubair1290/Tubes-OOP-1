@@ -23,6 +23,6 @@ g++ main.cpp Organism.cpp Engimon.cpp EngimonWild.cpp player.cpp Element.h
 
 ![Alt text](screenshot/player.png?raw=true "Player")
 ![Alt text](screenshot/player_move.png?raw=true "Player Move")
-- Test 2
+- Player with enemies
 
 ![Alt text](screenshot/player_w_enemies.png?raw=true "Player with enemies")
