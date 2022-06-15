@@ -14,4 +14,15 @@ Pemain melawan dan menangkap engimon liar menggunakan engimon player.
 ## Compile
 g++ main.cpp Organism.cpp Engimon.cpp EngimonWild.cpp player.cpp Element.h
 
-## Screenshoot
+## How to play
+1. Masuk ke folder src
+2. Run a.exe
+
+## Screenshot
+- Player
+
+![Alt text](screenshot/player.png?raw=true "Player")
+![Alt text](screenshot/player_move.png?raw=true "Player Move")
+- Test 2
+
+![Alt text](screenshot/player_w_enemies.png?raw=true "Player with enemies")
